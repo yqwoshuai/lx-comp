@@ -17,7 +17,7 @@ const disabledProps:ButtonProps = {
   onClick: jest.fn()
 }
 
-describe("组件测试", () => {
+describe("button组件测试", () => {
   it("默认button", () => {
     const wrapper = render(<Button {...defaultProps}>hello</Button>);
     const element = wrapper.getByText("hello") as HTMLButtonElement;
