@@ -1,5 +1,5 @@
 import React from "react";
-import Button, { ButtonType, ButtonSize } from "./components/Button/button";
+import Button from "./components/Button/button";
 import Menu from "./components/Menu/meun";
 import MenuItem from "./components/Menu/menuItem";
 import SubMenu from "./components/Menu/subMenu";
@@ -8,28 +8,27 @@ function App() {
     <div className="App">
       <div>
         <Button>123</Button>
-        <Button size={ButtonSize.Small}>123</Button>
+        <Button size='sm'>123</Button>
         <Button
           className="custom"
           onClick={() => console.log(1)}
-          btnType={ButtonType.Primary}
-          size={ButtonSize.Large}
+          btnType='primary'
+          size='lg'
         >
           123
         </Button>
-        <Button btnType={ButtonType.Danger} size={ButtonSize.Large}>
+        <Button btnType='danger' size="lg">
           123
         </Button>
-        <Button btnType={ButtonType.Default} size={ButtonSize.Large}>
+        <Button btnType="default" size="lg">
           123
         </Button>
-        <Button btnType={ButtonType.Link} href="www.baidu.com">
+        <Button btnType="link" href="www.baidu.com">
           123
         </Button>
       </div>
       <div>
         <Menu
-          mode="vertical"
           defaultIndex="0"
           onSelect={(index) => {
             console.log(index);

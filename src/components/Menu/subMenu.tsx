@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { MenuContext } from "./meun";
 import { MenuItemProps } from "./menuItem";
 import Icon from "../Icon/icon";
+import Transition from "../Transition/transition";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 library.add(fas);
@@ -27,7 +28,7 @@ const SubMenu: React.FC<SubMenuProps> = ({
   const classes = classNames("lx-menu-item lx-submenu-item", className, {
     "is-active": context.index === index,
     "is-opened": menuOpen,
-    "is-vertical": context.mode === 'vertical'
+    "is-vertical": context.mode === "vertical",
   });
 
   const handleClick = (e: React.MouseEvent) => {
@@ -73,7 +74,11 @@ const SubMenu: React.FC<SubMenuProps> = ({
         console.error("Menu的子组件只能是MenuItem");
       }
     });
-    return <ul className={subMenuClasses}>{childrenComponent}</ul>;
+    return (
+      <Transition in={menuOpen} timeout={300} animation="lx-comp-in-top">
+        <ul className={subMenuClasses}>{childrenComponent}</ul>
+      </Transition>
+    );
   };
 
   return (
