@@ -22,21 +22,21 @@ interface GithubUserProps {
 function App() {
   const [inputValue, setInputValue] = useState("");
 
-  const strNum = ["aqwe", "bqwe", "cqwe", "dqwe"];
-  const strNums = [
-    { value: "a", number: 11 },
-    { value: "b", number: 0 },
-    { value: "c", number: 1 },
-    { value: "d", number: 2 },
-    { value: "e", number: 3 },
-    { value: "f", number: 4 },
-    { value: "a1", number: 5 },
-    { value: "b1", number: 6 },
-    { value: "c1", number: 7 },
-    { value: "d1", number: 8 },
-    { value: "e1", number: 9 },
-    { value: "f1", number: 10 },
-  ];
+  // const strNum = ["aqwe", "bqwe", "cqwe", "dqwe"];
+  // const strNums = [
+  //   { value: "a", number: 11 },
+  //   { value: "b", number: 0 },
+  //   { value: "c", number: 1 },
+  //   { value: "d", number: 2 },
+  //   { value: "e", number: 3 },
+  //   { value: "f", number: 4 },
+  //   { value: "a1", number: 5 },
+  //   { value: "b1", number: 6 },
+  //   { value: "c1", number: 7 },
+  //   { value: "d1", number: 8 },
+  //   { value: "e1", number: 9 },
+  //   { value: "f1", number: 10 },
+  // ];
   // const handleFetch = (query: string) => {
   //   return strNum
   //     .filter((name) => name.includes(query))
