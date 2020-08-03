@@ -7,6 +7,7 @@ import Input from "./components/Input/input";
 import AutoComplete, {
   DataSourceType,
 } from "./components/AutoComplete/autoComplete";
+import Upload from "./components/Upload/upload";
 
 interface DataType {
   value: string;
@@ -49,12 +50,10 @@ function App() {
     return fetch(`https://api.github.com/search/users?q=${query}`)
       .then((res) => res.json())
       .then(({ items }) => {
-        return items
-          .slice(0, 10)
-          .map((item: { login: any; url: any }) => ({
-            value: item.login,
-            ...item,
-          }));
+        return items.slice(0, 10).map((item: { login: any; url: any }) => ({
+          value: item.login,
+          ...item,
+        }));
       });
   };
   const renderOption = (item: DataSourceType<GithubUserProps>) => {
@@ -64,6 +63,17 @@ function App() {
         <p>url: {item.url}</p>
       </>
     );
+  };
+  const beforeUploadBoolen = (file: File) => {
+    if (Math.round(file.size / 1024) > 50) {
+      console.log("太大了");
+      return false;
+    }
+    return true;
+  };
+  const beforeUploadPromise = (file: File) => {
+    const newFile = new File([file], "newName", { type: file.type });
+    return Promise.resolve(newFile);
   };
   return (
     <div className="App">
@@ -131,6 +141,27 @@ function App() {
           }}
           renderOption={renderOption}
         ></AutoComplete>
+      </div>
+      <div>
+        <Upload
+          action="https://jsonplaceholder.typicode.com/posts/"
+          onProgress={() => {
+            console.log("onProgress");
+          }}
+          onError={() => {
+            console.log("onError");
+          }}
+          onSuccess={() => {
+            console.log("onSuccess");
+          }}
+        ></Upload>
+        <Upload
+          action="https://jsonplaceholder.typicode.com/posts/"
+          onChange={() => {
+            console.log("onChange");
+          }}
+          beforeUpload={beforeUploadPromise}
+        ></Upload>
       </div>
     </div>
   );
