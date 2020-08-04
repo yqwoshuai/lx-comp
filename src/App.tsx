@@ -4,10 +4,11 @@ import Menu from "./components/Menu/meun";
 import MenuItem from "./components/Menu/menuItem";
 import SubMenu from "./components/Menu/subMenu";
 import Input from "./components/Input/input";
+import Icon from './components/Icon/icon'
 import AutoComplete, {
   DataSourceType,
 } from "./components/AutoComplete/autoComplete";
-import Upload from "./components/Upload/upload";
+import Upload, { UploadFile } from "./components/Upload/upload";
 
 interface DataType {
   value: string;
@@ -75,6 +76,29 @@ function App() {
     const newFile = new File([file], "newName", { type: file.type });
     return Promise.resolve(newFile);
   };
+  const defauleFileList: UploadFile[] = [
+    {
+      uid: "123",
+      size: 1234,
+      name: "abc1.txt",
+      status: "uploading",
+      percent: 30,
+    },
+    {
+      uid: "321",
+      size: 1234,
+      name: "abc2.txt",
+      status: "success",
+      percent: 30,
+    },
+    {
+      uid: "231",
+      size: 1234,
+      name: "abc3.txt",
+      status: "error",
+      percent: 30,
+    },
+  ];
   return (
     <div className="App">
       <div>
@@ -154,14 +178,45 @@ function App() {
           onSuccess={() => {
             console.log("onSuccess");
           }}
-        ></Upload>
+          beforeUpload={beforeUploadBoolen}
+        >
+          <Button btnType="primary">上传文件</Button>
+        </Upload>
         <Upload
           action="https://jsonplaceholder.typicode.com/posts/"
           onChange={() => {
             console.log("onChange");
           }}
           beforeUpload={beforeUploadPromise}
-        ></Upload>
+        >
+          <Button btnType="primary">上传文件</Button>
+        </Upload>
+        <Upload
+          action="https://run.mocky.io/v3/e39cba55-d289-4e1f-a45f-8c8c862168a5"
+          defaultFileList={defauleFileList}
+          onChange={() => {
+            console.log("onChange");
+          }}
+          onRemove={() => {
+            console.log("onRemove");
+          }}
+          name="newName"
+          data={{ key: "value" }}
+          headers={{ "x-powerd-by": "lx-comp" }}
+          accept=".jpg,.png"
+          multiple
+        >
+          <Button btnType="primary">上传文件</Button>
+        </Upload>
+        <Upload
+          action="https://jsonplaceholder.typicode.com/posts"
+          beforeUpload={beforeUploadBoolen}
+          drag
+        >
+          <Icon icon="upload" size="5x" theme="secondary"></Icon>
+          <br />
+          <p>拖动上传</p>
+        </Upload>
       </div>
     </div>
   );
