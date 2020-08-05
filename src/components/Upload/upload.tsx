@@ -1,7 +1,6 @@
 import React, { useRef, ChangeEvent, useState } from "react";
 import axios from "axios";
 import UploadList from "./uploadList";
-import Button from "../Button/button";
 import Dragger from "./dragger";
 
 export type UploadFileStatus = "ready" | "success" | "error" | "uploading";
@@ -115,6 +114,7 @@ export const Upload: React.FC<UploadPorps> = (props) => {
       uid: Date.now() + "upload-file",
       size: file.size,
       name: file.name,
+      status: "ready",
       percent: 0,
       raw: file,
     };

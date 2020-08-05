@@ -21,7 +21,7 @@ export const UploadList: React.FC<UploadListProps> = (props) => {
               {file.name}
             </span>
             <span className="file-status">
-              {file.status === "uploading" && (
+              {(file.status === "uploading" || file.status === "ready") && (
                 <Icon icon="spinner" spin theme="primary"></Icon>
               )}
               {file.status === "success" && (

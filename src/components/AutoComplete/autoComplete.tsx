@@ -9,8 +9,8 @@ import React, {
 import Input, { InputProps } from "../Input/input";
 import Icon from "../Icon/icon";
 import classNames from "classnames";
-import useDebounce from "../hooks/usedebounce";
-import useClickOutSide from "../hooks/useClickOutSide";
+import useDebounce from "../../hooks/usedebounce";
+import useClickOutSide from "../../hooks/useClickOutSide";
 interface DataSource {
   value?: string;
 }
